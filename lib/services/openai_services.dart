@@ -1,18 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../common/apikey.dart';
 
 class OpenAIService {
   final List<Map<String, String>> messages = [];
-  final apikey = "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";
-
-  
 
   Future<String> isArtPromptAPI(String prompt) async {
-    
-
-
-
     try {
       final res = await http.post(
         Uri.parse('https://api.openai.com/v1/chat/completions'),
