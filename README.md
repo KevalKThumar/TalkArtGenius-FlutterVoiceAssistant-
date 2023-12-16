@@ -4,7 +4,7 @@
 
 ## Overview
 
-This Flutter project implements a voice assistant using the ChatGPT API for natural language processing and the DALL-3 API for generating images based on textual descriptions.
+This Flutter project implements a voice assistant using the ChatGPT API for natural language processing and the DALL-3 API for generating images based on voice descriptions.
 
 ## Features
 
