@@ -7,6 +7,10 @@ class OpenAIService {
   final List<Map<String, String>> messages = [];
 
   Future<String> isArtPromptAPI(String prompt) async {
+    
+
+
+
     try {
       final res = await http.post(
         Uri.parse('https://api.openai.com/v1/chat/completions'),
