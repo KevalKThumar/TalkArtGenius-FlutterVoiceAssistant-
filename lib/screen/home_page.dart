@@ -86,8 +86,8 @@ class _MyHomePageState extends State<MyHomePage> {
         if (genaretedConntent != null) {
           setState(() {
             isSpeechStart = true;
-          });
           textToSpeech();
+          });
         }
       }
     }
@@ -95,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // text to speech
   textToSpeech() async {
+    
     flutterTts.setSilence(500);
     flutterTts.setLanguage("en-IN");
     flutterTts.setPitch(1);
@@ -225,7 +226,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           floatingActionButton: isSpeechStart
-              ? const SizedBox()
+              ? ZoomIn(
+                  animate: true,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      flutterTts.stop();
+                      setState(() {
+                        isSpeechStart = false;
+                      });
+                    },
+                    backgroundColor: Pallete.secondSuggestionBoxColor,
+                    child: const Icon(Icons.stop),
+                  ))
               : ZoomIn(
                   animate: true,
                   delay: Duration(milliseconds: delay * 4),

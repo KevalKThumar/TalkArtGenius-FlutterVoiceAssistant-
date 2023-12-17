@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 import '../common/apikey.dart';
@@ -25,6 +26,7 @@ class OpenAIService {
           ],
         }),
       );
+      log(res.body);
       if (res.statusCode == 200) {
         String content =
             jsonDecode(res.body)['choices'][0]['message']['content'];
