@@ -43,6 +43,3 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 lib/common/apikey.dart
-start.gif
-image.gif
-text.gif
