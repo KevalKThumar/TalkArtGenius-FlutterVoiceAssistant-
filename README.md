@@ -1,6 +1,8 @@
 # Flutter Voice Assistant with ChatGPT API and DALL-3 API
 
-<!-- ![Demo](link_to_demo_gif_or_screenshot.gif) -->
+![Demo](start.gif) 
+![TextBase_intrection](text.gif)
+![ImageBase_intrection](image.gif)
 
 ## Overview
 
@@ -25,8 +27,8 @@ This Flutter project implements a voice assistant using the ChatGPT API for natu
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/flutter-voice-assistant.git
-    cd flutter-voice-assistant
+    git clone https://github.com/KevalKThumar/FlutterVoiceAssistant
+    cd FlutterVoiceAssistant
     ```
 
 2. Install dependencies:
@@ -37,7 +39,7 @@ This Flutter project implements a voice assistant using the ChatGPT API for natu
 
 3. Set up API keys:
 
-    Rename `lib/config/api_keys.dart.example` to `lib/config/api_keys.dart` and add your API keys.
+    Rename `lib/config/api_keys.dart` and add your API keys.
 
 ### Usage
 
