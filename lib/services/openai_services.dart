@@ -100,7 +100,7 @@ class OpenAIService {
         body: jsonEncode({
           'prompt': prompt,
           'n': 1,
-          'size': '1024x1024',
+          'size': '512x512',
           'response_format': 'url',
           'user': 'flutter',
         }),
