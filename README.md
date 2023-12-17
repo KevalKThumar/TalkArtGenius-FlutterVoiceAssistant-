@@ -1,7 +1,10 @@
 # Flutter Voice Assistant with ChatGPT API and DALL-3 API
-
+## Some videos of the project
+### HomeScreen
 ![Demo](start.gif) 
+### TextBase intrection
 ![TextBase_intrection](text.gif)
+### Generation of image
 ![ImageBase_intrection](image.gif)
 
 ## Overview
