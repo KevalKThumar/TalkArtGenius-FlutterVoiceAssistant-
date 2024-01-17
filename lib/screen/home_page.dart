@@ -16,152 +16,166 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  int delay = 200;
+  
+    int delay = 200;
 
-    final AssistanceProvider assistantprovider = Provider.of<AssistanceProvider>(context);
-
+    final assistantprovider =
+        Provider.of<AssistanceProvider>(context, listen: false);
     assistantprovider.initSpeechToText();
-
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: BounceInDown(
-            child: const Text("Voice Assistant",
-                style: TextStyle(
-                  fontFamily: "Cera Pro",
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                )),
+          appBar: AppBar(
+            title: BounceInDown(
+              child: const Text("Voice Assistant",
+                  style: TextStyle(
+                    fontFamily: "Cera Pro",
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  )),
+            ),
+            centerTitle: true,
+            leading: const Icon(Icons.menu),
           ),
-          centerTitle: true,
-          leading: const Icon(Icons.menu),
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Column(
-              children: [
-                // virtual assistant picture
-                assistantPicture(),
-
-                //  question
-                question(
-                  assistantprovider.lastWords,
-                  assistantprovider.genaretedConntent,
-                  assistantprovider.genaratedImageUrl,
-                ),
-
-                // chat bubble
-                chatBubble(
-                  assistantprovider.genaretedConntent,
-                  assistantprovider.genaratedImageUrl,
-                  assistantprovider.isProcessing,
-                ),
-
-                // generated image
-
-                if (assistantprovider.genaratedImageUrl != null)
-                  generatedImage(context, assistantprovider.genaratedImageUrl!),
-
-                // message
-                SlideInLeft(
-                  child: Visibility(
-                    visible: assistantprovider.genaretedConntent == null &&
-                        assistantprovider.genaratedImageUrl == null,
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(
-                        top: 10,
-                        left: 20,
-                      ),
-                      child: const Text(
-                        "Here are a few features",
-                        style: TextStyle(
-                          color: Pallete.mainFontColor,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Cera Pro",
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-                // Feature List
-
-                Visibility(
-                  visible: assistantprovider.genaretedConntent == null &&
-                      assistantprovider.genaratedImageUrl == null,
-                  child: Column(
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Consumer<AssistanceProvider>(
+                builder: (context, assistantprovider, child) {
+                  return Column(
                     children: [
+                      // virtual assistant picture
+                      assistantPicture(),
+
+                      //  question
+                      question(
+                        assistantprovider.lastWords,
+                        assistantprovider.genaretedConntent,
+                        assistantprovider.genaratedImageUrl,
+                      ),
+
+                      // chat bubble
+                      chatBubble(
+                        assistantprovider.genaretedConntent,
+                        assistantprovider.genaratedImageUrl,
+                        assistantprovider.isProcessing,
+                      ),
+
+                      // generated image
+
+                      if (assistantprovider.genaratedImageUrl != null)
+                        generatedImage(
+                            context, assistantprovider.genaratedImageUrl!),
+
+                      // message
                       SlideInLeft(
-                        delay: Duration(milliseconds: delay),
-                        child: const FeatureBox(
-                          color: Pallete.firstSuggestionBoxColor,
-                          title: "ChatGPT",
-                          subTitle:
-                              "A smarter way to stay organized and informed with chtatGPT",
+                        child: Visibility(
+                          visible:
+                              assistantprovider.genaretedConntent == null &&
+                                  assistantprovider.genaratedImageUrl == null,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.all(10),
+                            margin: const EdgeInsets.only(
+                              top: 10,
+                              left: 20,
+                            ),
+                            child: const Text(
+                              "Here are a few features",
+                              style: TextStyle(
+                                color: Pallete.mainFontColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Cera Pro",
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                      SlideInLeft(
-                        delay: Duration(milliseconds: delay * 2),
-                        child: const FeatureBox(
-                          color: Pallete.secondSuggestionBoxColor,
-                          title: "Dall-E",
-                          subTitle:
-                              "Get inspired and stay creative with your personal assistant powered by Dall-E",
-                        ),
-                      ),
-                      SlideInLeft(
-                        delay: Duration(milliseconds: delay * 3),
-                        child: const FeatureBox(
-                          color: Pallete.thirdSuggestionBoxColor,
-                          title: "Smart Voice",
-                          subTitle:
-                              "Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT",
+
+                      // Feature List
+
+                      Visibility(
+                        visible: assistantprovider.genaretedConntent == null &&
+                            assistantprovider.genaratedImageUrl == null,
+                        child: Column(
+                          children: [
+                            SlideInLeft(
+                              delay: Duration(milliseconds: delay),
+                              child: const FeatureBox(
+                                color: Pallete.firstSuggestionBoxColor,
+                                title: "ChatGPT",
+                                subTitle:
+                                    "A smarter way to stay organized and informed with chtatGPT",
+                              ),
+                            ),
+                            SlideInLeft(
+                              delay: Duration(milliseconds: delay * 2),
+                              child: const FeatureBox(
+                                color: Pallete.secondSuggestionBoxColor,
+                                title: "Dall-E",
+                                subTitle:
+                                    "Get inspired and stay creative with your personal assistant powered by Dall-E",
+                              ),
+                            ),
+                            SlideInLeft(
+                              delay: Duration(milliseconds: delay * 3),
+                              child: const FeatureBox(
+                                color: Pallete.thirdSuggestionBoxColor,
+                                title: "Smart Voice",
+                                subTitle:
+                                    "Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT",
+                              ),
+                            )
+                          ],
                         ),
                       )
                     ],
-                  ),
-                )
-              ],
+                  );
+                },
+              ),
             ),
           ),
-        ),
-        floatingActionButton: assistantprovider. isSpeechStart
-            ? ZoomIn(
-                animate: true,
-                child: FloatingActionButton(
-                  onPressed: () {
-                    
-                    assistantprovider.flutterTts.stop();
-                    assistantprovider.setIsSppeechStart(false);
-                  },
-                  backgroundColor: Pallete.secondSuggestionBoxColor,
-                  child: const Icon(Icons.stop),
-                ))
-            : ZoomIn(
-                animate: true,
-                delay: Duration(milliseconds: delay * 4),
-                child: FloatingActionButton(
-                  onPressed: () async {
-                    if (await assistantprovider.speechToText.hasPermission &&
-                        assistantprovider.speechToText.isNotListening) {
-                      await assistantprovider.startListening();
-                    } else if (assistantprovider.speechToText.isListening) {
-                      await assistantprovider.stopListening();
-                    } else {
-                      assistantprovider.initSpeechToText();
-                    }
-                  },
-                  backgroundColor: Pallete.firstSuggestionBoxColor,
-                  child: Icon(
-                    assistantprovider.speechToText.isListening ? Icons.stop : Icons.mic,
-                  ),
-                ),
-              ),
-      ),
+          floatingActionButton: assistantprovider.isSpeechStart
+              ? Consumer<AssistanceProvider>(
+                  builder: (context, assistantprovider, child) {
+                  return ZoomIn(
+                    animate: true,
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        assistantprovider.flutterTts.stop();
+                        assistantprovider.setIsSppeechStart(false);
+                      },
+                      backgroundColor: Pallete.secondSuggestionBoxColor,
+                      child: const Icon(Icons.stop),
+                    ),
+                  );
+                },)
+              : Consumer<AssistanceProvider>(
+                  builder: (context, assistantprovider, child) {
+                  return ZoomIn(
+                    animate: true,
+                    delay: Duration(milliseconds: delay * 4),
+                    child: FloatingActionButton(
+                      onPressed: () async {
+                        if (await assistantprovider
+                                .speechToText.hasPermission &&
+                            assistantprovider.speechToText.isNotListening) {
+                          await assistantprovider.startListening();
+                        } else if (assistantprovider.speechToText.isListening) {
+                          await assistantprovider.stopListening();
+                        } else {
+                          assistantprovider.initSpeechToText();
+                        }
+                      },
+                      backgroundColor: Pallete.firstSuggestionBoxColor,
+                      child: Icon(
+                        assistantprovider.speechToText.isListening
+                            ? Icons.stop
+                            : Icons.mic,
+                      ),
+                    ),
+                  );
+                },),),
     );
   }
 }
